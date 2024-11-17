@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
       
       - name: Execute Python script
-        run: python main.py
+        run: python KexpSpotifyPlaylist.py
         env:
           spotify_client_id: ${{ secrets.spotify_client_id }}
           spotify_secret: ${{ secrets.spotify_secret }}
