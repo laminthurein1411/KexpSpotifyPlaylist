@@ -2,40 +2,30 @@ name: run main.py
 
 on:
   schedule:
-    - cron: '0 0 * * 1' # At 00:00 on Monday
+  - cron: '30 6 * * *'
+  workflow_dispatch:
 
 jobs:
-  build:
+  execute-cron:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code	
+        uses: actions/checkout@v3
 
-      - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner
-
-      - name: setup python
-        uses: actions/setup-python@v4
+      - name: Setup Python Environment
+        uses: actions/setup-python@v2
         with:
-          python-version: '3.9' # install the python version needed
-          
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          
-          
-      - name: execute py script # run KexpSpotifyPlaylist.py
+          python-version: '3.10'
+
+      - name: Install Requirements
+        run: pip install -r requirements.txt
+
+      - name: Execute Python script
+        run: python main.py
         env:
-          SOME_SECRET: ${{ secrets.SOME_SECRET }}
-        run: python KexpSpotifyPlaylist.py
+          spotify_client_id: ${{ secrets.spotify_client_id }}
+          spotify_secret: ${{ secrets.spotify_secret }}
+          spotify_username : ${{ secrets.spotify_username }}
           
-      - name: commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
-          
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main 
+      - name: Keepalive
+        uses: gautamkrishnar/keepalive-workflow@v1
