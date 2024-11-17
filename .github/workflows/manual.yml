@@ -29,7 +29,7 @@ jobs:
           spotify_client_id: ${{ secrets.spotify_client_id }}
           spotify_secret: ${{ secrets.spotify_secret }}
           spotify_username : ${{ secrets.spotify_username }}
-          redirect_url : ${{http://localhost:8888/callback/}}
+          redirect_url : ${{ secrets.redirect_url }}
           
       - name: Keepalive
         uses: gautamkrishnar/keepalive-workflow@v1
