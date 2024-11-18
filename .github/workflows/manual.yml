@@ -26,10 +26,10 @@ jobs:
       - name: Execute Python script
         run: python KexpSpotifyPlaylist.py
         env:
-          spotify_client_id: ${{ secrets.spotify_client_id }}
-          spotify_secret: ${{ secrets.spotify_secret }}
-          spotify_username : ${{ secrets.spotify_username }}
-          redirect_url : ${{ secrets.redirect_url }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_SECRET: ${{ secrets.SPOTIFY_SECRET }}
+          SPOTIFY_USERNAME : ${{ secrets.SPOTIFY_USERNAME }}
+          REDIRECT_URL : ${{ secrets.REDIRECT_URL }}
           
       - name: Keepalive
         uses: gautamkrishnar/keepalive-workflow@v1
