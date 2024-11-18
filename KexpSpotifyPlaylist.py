@@ -1,5 +1,6 @@
 import requests
 import spotipy
+import dotenv
 import spotipy.util as util
 from datetime import datetime
 from dotenv import load_dotenv, find_dotenv
