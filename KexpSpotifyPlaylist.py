@@ -1,9 +1,17 @@
 import requests
 import spotipy
 import spotipy.util as util
-from secrets import spotify_username, spotify_client_id, spotify_secret, redirect_url
 from datetime import datetime
+from dotenv import load_dotenv, find_dotenv
 
+load_dotenv(find_dotenv())
+
+SPOTIFY_REFRESH_TOKEN = get_env("SPOTIFY_REFRESH_TOKEN")
+SPOTIFY_CLIENT_ID = get_env("SPOTIFY_CLIENT_ID")
+SPOTIFY_CLIENT_SECRET = get_env("SPOTIFY_CLIENT_SECRET")
+
+
+OAUTH_TOKEN_URL = "https://accounts.spotify.com/api/token"
 """ Creates a Spotify playlist of the latest songs played on Seattle's KEXP 90.3 FM radio station. """
 
 
